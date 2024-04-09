@@ -1,0 +1,53 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "compile",
+      // "problemMatcher": "$tsc-watch",
+      "isBackground": false,
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      },
+      "dependsOn": ["webview", "move-js", "move-css"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "webview",
+      "type": "npm",
+      "script": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/webview"
+      },
+      "presentation": {
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "move-js",
+      "type": "shell",
+      "command": "cp",
+      "args": ["webview/dist/assets/index-*.js", "dist/index.js"],
+      "presentation": {
+        "panel": "shared"
+      },
+      "dependsOn": ["webview"]
+    },
+    {
+      "label": "move-css",
+      "type": "shell",
+      "command": "cp",
+      "args": ["webview/dist/assets/index-*.css", "dist/index.css"],
+      "presentation": {
+        "panel": "shared"
+      },
+      "dependsOn": ["webview", "move-js"]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "name": "tari",
+  "displayName": "Tari",
+  "description": "Tari testing extension",
+  "publisher": "Tari",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cifko/tari-vscode-extension.git"
+  },
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "view/title": [
+        {
+          "command": "tari.refreshEntry",
+          "when": "view == tari",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "tari.add",
+          "when": "view == tari && viewItem =~ /\\bcollection\\b/",
+          "group": "inline"
+        },
+        {
+          "command": "tari.info",
+          "when": "view == tari && viewItem =~ /\\bprocess\\b/",
+          "group": "navigation"
+        },
+        {
+          "command": "tari.webUI",
+          "when": "view == tari && viewItem =~ /\\bprocess\\b/ && viewItem =~ /\\bis_running\\b/ && viewItem =~ /\\bweb_ui\\b/",
+          "group": "navigation"
+        },
+        {
+          "command": "tari.show",
+          "when": "view == tari && viewItem =~ /\\info\\b/",
+          "group": "inline@1"
+        },
+        {
+          "command": "tari.start",
+          "when": "view == tari && viewItem =~ /\\bprocess\\b/ && !(viewItem =~ /\\bis_running\\b/)",
+          "group": "inline@1"
+        },
+        {
+          "command": "tari.stop",
+          "when": "view == tari && viewItem =~ /\\bprocess\\b/ && viewItem =~ /\\bis_running\\b/",
+          "group": "inline@2"
+        },
+        {
+          "command": "tari.refreshEntry",
+          "when": "view == tari && viewItem =~ /\\bprocess\\b/",
+          "group": "inline@3"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "tari.openLog",
+        "title": "Open log"
+      },
+      {
+        "command": "tari.openDB",
+        "title": "Open DB"
+      },
+      {
+        "command": "tari.info",
+        "title": "Info"
+      },
+      {
+        "command": "tari.webUI",
+        "title": "WebUI"
+      },
+      {
+        "command": "tari.refreshEntry",
+        "title": "Refresh",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "tari.add",
+        "title": "Add",
+        "icon": {
+          "light": "resources/light/add.svg",
+          "dark": "resources/dark/add.svg"
+        }
+      },
+      {
+        "command": "tari.show",
+        "title": "Show Info",
+        "icon": {
+          "light": "resources/light/logs.svg",
+          "dark": "resources/dark/logs.svg"
+        }
+      },
+      {
+        "command": "tari.start",
+        "title": "Start",
+        "icon": "resources/icons8-start-48.png"
+      },
+      {
+        "command": "tari.stop",
+        "title": "Stop",
+        "icon": "resources/icons8-close.svg"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tari",
+          "title": "Tari",
+          "icon": "resources/tari.svg"
+        }
+      ]
+    },
+    "views": {
+      "tari": [
+        {
+          "id": "tari",
+          "name": "Tari"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Tari Settings",
+      "properties": {
+        "tari.jrpcURL": {
+          "type": "string",
+          "default": "http://127.0.0.1:18006",
+          "description": "URL for the jrpc server"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.35",
+    "@vscode/webview-ui-toolkit": "^1.4.0",
+    "axios": "^1.6.7"
+  }
+}

@@ -1,0 +1,45 @@
+/* #root {
+  padding: 2rem;
+  text-align: left;
+  margin-top: 0px;
+}
+
+* {
+  margin: 0px;
+} */
+
+/* vscode-button {
+  margin: 10px;
+} */
+
+/* .inner-container {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.inner-container > * {
+  width: 100%;
+  margin-top: 3px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+} */
+
+vscode-panel-view {
+  flex-direction: column;
+}
+
+vscode-badge {
+  margin-left: 5px;
+  font-size: normal;
+}
+
+vscode-panel-tab {
+  font-size: large;
+}
